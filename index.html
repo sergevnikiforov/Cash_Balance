@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MoneyApp</title>
+    
+    <link data-require="bootstrap-css@2.3.2" data-semver="2.3.2" rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+
+    <link rel="stylesheet" href="main.css" /> 
+    <style>
+        .yyy {
+            cursor: pointer;
+           
+        }
+    </style>
+</head>
+<style>
+
+</style>
+<body>
+<div ng-controller="ctrl_1">
+    
+    <button ng-click="clearStorage()">УДАЛИТЬ ВСЕ</button>
+    <br />
+    <br />
+    
+    Валюта ввода:
+    <select id="type" name="type" 
+        ng-model="currentCurrency.currency"
+        ng-options="x.name for x in currencyArr track by x.id">
+    </select>
+    
+    <br />
+    <br />
+
+	<table class="table">
+		<tr class="table__header">
+            <th>Дата</th>
+			<th>Расходы, грн</th>
+			<th>Доходы, грн</th>
+			<th colspan="3"></th>
+		</tr>
+        <tr class="table__input">
+			<th>
+				<select ng-model="selected"
+						ng-options="x.month for x in months">
+                </select>
+				<input type="text" size="1" ng-model="number" />
+				<input type="text" size="1" ng-model="year" />
+			</th>
+			<th><input type="text" placeholder="Расходы" ng-model="moneyCosts" size="4" /></th>
+			<th><input type="text" placeholder="Доходы" ng-model="moneyIncome" size="4" /></th>
+			<th><button ng-click="addDataToTable()">Добавить</button></th>
+            <th colspan="2">Описание</th>
+		</tr>
+		<tr ng-repeat="x in filteredPages track by $index" class="tableBody">
+            <td ng-dblclick="editFieldsDate($index)" 
+				ng-bind-template="{{x.selectedMonth}}, {{x.number}} - {{x.year}}" 
+                data-month="{{ x.selectedMonth }}">
+            </td>
+			<td>{{x.moneyCosts | currency: "" : 0}}</td>
+			<td>{{x.moneyIncome | currency: "" : 0}}</td>
+			<td><button ng-click="deleteDataFromTable($index)">&#10006;</button></td><!-- Удалить -->
+			<td><button ng-click="addDescription($index)">&#9998;</button></td><!-- Описание -->
+            <td ng-bind-html="x.label"></td>
+		</tr>
+	</table>
+    
+    <div class="yyy" 
+        data-pagination="" 
+        data-num-pages="numPages()" 
+        data-current-page="currentPage" 
+        data-max-size="maxSize"  
+        data-boundary-links="true"
+        total-items="totalItems"  
+        class="pagination-sm" 
+        previous-text="&#9668;" 
+        next-text="&#9658;" 
+        first-text="&#108;&#9668;" 
+        last-text="&#9658;&#108;">
+    </div>
+    
+    <div class="forma">
+        <form>{{star}}
+            <textarea class="textarea" placeholder='Писать сюда'></textarea>
+            <button class="forma__ok" ng-click="saveDescription()">Save</button>
+        </form>
+        <button class="closes" ng-click="closeDescription()">X</button>
+    </div>
+    
+    Доход: {{sumPlus}}  <br />
+    Рассход: {{sumMinus}} <br />
+    Прибыль: {{profit}} <br />  <br />  <br />
+
+
+
+</div>
+
+<div class="today"></div>
+
+
+
+
+
+<script>
+
+var textarea = document.querySelector('textarea');
+
+textarea.addEventListener('keydown', autosize);
+             
+function autosize(){
+  var el = this;
+  setTimeout(function(){
+    el.style.cssText = 'height:auto; padding:0';
+    el.style.cssText = 'height:' + el.scrollHeight + 'px';
+  },0);
+}
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.7/angular-sanitize.min.js"></script>
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.min.js"></script>
+
+<script src="app/mainApp.js"></script>
+<script src="app/controllers/ctrl_1.js"></script>
+<script src="app/controllers/ctrl_2.js"></script>
+</body>
+</html>
+<!-- &#8372; uah -->

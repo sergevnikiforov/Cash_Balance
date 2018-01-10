@@ -1,0 +1,72 @@
+
+table, th, td {
+	border-collapse: collapse;
+	border: 2px solid black;
+	padding: 5px;
+    max-width: 100%;
+}
+.table {
+    max-width: 750px;
+}
+.table__input {
+    background-color: #E0FFFF;
+    text-align: center;
+}
+.table__input input {
+     max-width: 60px;
+    
+}
+.table__input select {
+    max-width: 100px;
+}
+
+
+.today {
+	position: absolute;
+	top: 15px;
+	right: 25px;
+	font-size: 25px;
+}
+.table__header {
+	background-color: #E0FFFF;
+}
+.tableBody {
+	background-color: #F0FFFF;
+	cursor: pointer;
+}
+.forma {
+    display: none;
+    position: absolute;
+    top: calc(50% - 100px);
+    left: calc(50% - 125px);  
+    border: 5px solid black;
+    background: orange;
+}
+textarea{  
+  /* box-sizing: padding-box; */
+  overflow:hidden;
+  /* demo only: */
+  padding:10px;
+  width:250px;
+  font-size:14px;
+  margin:50px auto;
+  display:block;
+  border-radius:10px;
+  border:6px solid #556677;
+}
+.closes {
+    font-size: 50px;
+    cursor: pointer;
+    background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
