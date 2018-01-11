@@ -3,7 +3,7 @@ app.controller("ctrl_1", function($scope){
 	$scope.data = model;
     console.log( $scope.data );
 
-    totalData = model2;
+
  
     var today = document.querySelector(".today");
     var dateToday = new Date;
@@ -34,15 +34,12 @@ app.controller("ctrl_1", function($scope){
  
     $scope.currencyExchange = function(x){
         if (x.id == 0){
-            console.log('grivna');
             $scope.moneyCosts = $scope.moneyCosts;
             $scope.moneyIncome = $scope.moneyIncome;
         } else if (x.id == 1){
-            console.log('dollar');
             $scope.moneyCosts = $scope.moneyCosts * 2;
             $scope.moneyIncome = $scope.moneyIncome * 2;
         } else if (x.id == 2){
-            console.log('euro');
             $scope.moneyCosts = $scope.moneyCosts * 3;
             $scope.moneyIncome = $scope.moneyIncome * 3;
         }
@@ -70,12 +67,9 @@ app.controller("ctrl_1", function($scope){
         currency: $scope.currencyArr[0]
     };
     /* ******************* */
-
-
-    var totalArr = {} 
-
+     
     $scope.addDataToTable = function() {
-        
+        var totalArr = {}
         totalArr[$scope.year] = {};
         totalArr[$scope.year][$scope.selected.month] = {
             records: []
@@ -91,19 +85,12 @@ app.controller("ctrl_1", function($scope){
             description: "",
             label: ""
         }); 
-
-
         $scope.moneyCosts = "";
         $scope.moneyIncome = "";
-
-        console.log(totalArr);
-
-        $scope.sumArr();
-        
+        $scope.sumArr(totalArr);
     } 
 
-    $scope.sumArr = function (){
-        console.log(totalArr);
+    $scope.sumArr = function (totalArr){
         for (var year in totalArr){ 
             for (var month in totalArr[year]){
                 for (var record in totalArr[year][month]){
@@ -117,22 +104,27 @@ app.controller("ctrl_1", function($scope){
         $scope.addDataInStorage();
     }
 
-
-   
-
-
 	$scope.addDataInStorage = function(){ 
 		model = $scope.data; 
 		window.localStorage.locStData = JSON.stringify(model);
         $scope.calculateProfit();
     }
+
     
-	$scope.addTotalDataInStorage = function(){ 
-        model2 = totalData; 
-		window.localStorage.locStData222 = JSON.stringify(model2);
+    $scope.funcForGraph = function(){
+        $scope.res = {};
+        var dataGraph = $scope.data.dataArr; 
+        for (var i = 0; i < dataGraph.length; i++){
+            $scope.res[dataGraph[i].year] = $scope.res[dataGraph[i].year] || {};
+            $scope.res[dataGraph[i].year][dataGraph[i].selectedMonth] = $scope.res[dataGraph[i].year][dataGraph[i].selectedMonth] || {plus: [], minus: []};
+
+            $scope.res[dataGraph.year] = dataGraph[i].year;
+            $scope.res[dataGraph[i].year][dataGraph[i].selectedMonth].plus.push(dataGraph[i].moneyIncome);
+            $scope.res[dataGraph[i].year][dataGraph[i].selectedMonth].minus.push(dataGraph[i].moneyCosts);
+        }
+      console.log($scope.res);     
     }
     
-
 
 	$scope.deleteDataFromTable = function(index) { 
         console.log(index + $scope.begin);
@@ -142,12 +134,12 @@ app.controller("ctrl_1", function($scope){
 	} 
 	
 	
-
 	$scope.clearStorage = function() {
         window.localStorage.clear();
         location.reload();
     }
-	
+    
+    
     $scope.calculateProfit = function() { 
         $scope.sumPlus = 0;
         $scope.sumMinus = 0;   
@@ -198,7 +190,7 @@ app.controller("ctrl_1", function($scope){
     
     $scope.filteredPages    = [];
     $scope.currentPage      = 1;    
-    $scope.numPerPage       = 3;   
+    $scope.numPerPage       = 8;    
     $scope.maxSize          = 5;    
 
     $scope.numPages = function(){
