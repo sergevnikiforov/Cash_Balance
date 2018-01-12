@@ -1,5 +1,4 @@
 var model;
-var model2;
 
 if (window.localStorage.locStData) {
     model = JSON.parse(window.localStorage.locStData);    

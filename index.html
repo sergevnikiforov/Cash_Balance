@@ -14,12 +14,19 @@
             cursor: pointer;
            
         }
+        .stat {
+            display: none;
+        }
+        .profit {
+            background: greenyellow;
+        }
     </style>
 </head>
 <style>
 
 </style>
 <body>
+
 <div ng-controller="ctrl_1">
     
     <button ng-click="clearStorage()">УДАЛИТЬ ВСЕ</button>
@@ -95,8 +102,25 @@
     Прибыль: {{profit}} <br />  <br />  <br />
 
 
-    <button ng-click="funcForGraph()">Вывести в консоль объект для графиков</button>
-</div>
+    <button class="stat__btn" ng-click="funcForGraph()">Отобразить статистику по месяцам</button>
+
+    
+	<table class="table stat">
+		<tr class="table__header">
+            <th>Месяц</th>
+			<th>Расходы, грн</th>
+			<th>Доходы, грн</th>
+			<th class="profit">Прибыль, грн</th>
+		</tr>
+		<tr ng-repeat="x in res222" class="tableBody">
+            <td>{{ x.month }} - {{ x.year }}</td>
+			<td>{{ x.minus }}</td>
+			<td>{{ x.plus }}</td>
+			<td class="profit">{{ x.profit }}</td>
+		</tr>
+    </table>
+    
+</div><!-- ng-controller="ctrl_1" -->
 
 <div class="today"></div>
 
@@ -117,6 +141,15 @@ function autosize(){
     el.style.cssText = 'height:' + el.scrollHeight + 'px';
   },0);
 }
+
+
+/* отображение статистики */
+var statBtn = document.querySelector('.stat__btn');
+var stat = document.querySelector('.stat');
+statBtn.onclick = function(){
+    stat.style.display = (stat.style.display == 'none') ? 'block' : 'none'
+}
+
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
