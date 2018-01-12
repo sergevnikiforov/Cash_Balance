@@ -1,6 +1,5 @@
 app.controller("ctrl_1", function($scope){
     
-
 	$scope.data = model;
     console.log( $scope.data );
  
@@ -101,6 +100,10 @@ app.controller("ctrl_1", function($scope){
 
     
     $scope.funcForGraph = function(){
+     /*   if (!$scope.data.dataArr == 0) {
+            alert('All Clear');
+            return;
+        }*/
         $scope.res = {};
         var dataGraph = $scope.data.dataArr; 
         for (var i = 0; i < dataGraph.length; i++){
@@ -137,6 +140,7 @@ app.controller("ctrl_1", function($scope){
             } 
         }
         getRes222(res);
+        getResCurMonth(res);
     }
 
     function getRes222(res) {
@@ -153,6 +157,23 @@ app.controller("ctrl_1", function($scope){
             }
         }
         console.log($scope.res222);
+    }
+
+
+    function getResCurMonth(res) {
+        $scope.resCurMonth = [];
+        var plus = res[$scope.year][$scope.selected.month].plus;
+        var minus = res[$scope.year][$scope.selected.month].minus;
+        var month = $scope.selected.month;
+        var year = $scope.year;
+        var profit =  plus - minus;
+        $scope.resCurMonth.push({   minus: Number(minus), 
+                                    plus: Number(plus), 
+                                    profit: profit,
+                                    month: month,
+                                    year: year
+                                });
+        console.log($scope.resCurMonth);
     }
 
 
@@ -178,8 +199,8 @@ app.controller("ctrl_1", function($scope){
             $scope.sumPlus = $scope.sumPlus + +$scope.data.dataArr[i].moneyIncome;
             $scope.sumMinus = $scope.sumMinus + +$scope.data.dataArr[i].moneyCosts;
         }
-        $scope.profit = $scope.sumPlus - $scope.sumMinus;
-    }   
+        $scope.totalProfit = $scope.sumPlus - $scope.sumMinus;
+    };   
 
     $scope.addDescription = function(index){
         $scope.index = $scope.begin + index;
@@ -216,11 +237,11 @@ app.controller("ctrl_1", function($scope){
         $scope.addDataInStorage();
     }
   
-   
+    
     $scope.filteredPages    = [];
-    $scope.currentPage      = 1;    
-    $scope.numPerPage       = 8;    
-    $scope.maxSize          = 5;    
+    $scope.currentPage      = 1;    // текущая вкладка
+    $scope.numPerPage       = 8;    // количество строк в таблице
+    $scope.maxSize          = 5;    // количество вкладок
 
     $scope.numPages = function(){
         return Math.ceil($scope.data.dataArr.length / $scope.numPerPage);

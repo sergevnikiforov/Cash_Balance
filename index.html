@@ -97,28 +97,50 @@
         <button class="closes" ng-click="closeDescription()">X</button>
     </div>
     
-    Доход: {{sumPlus}}  <br />
+    <!-- Доход: {{sumPlus}}  <br />
     Рассход: {{sumMinus}} <br />
-    Прибыль: {{profit}} <br />  <br />  <br />
+    Прибыль: {{profit}} <br />  <br />  <br /> -->
 
 
-    <button class="stat__btn" ng-click="funcForGraph()">Отобразить статистику по месяцам</button>
+    <button class="stat__btn" ng-click="funcForGraph()">Отобразить статистику по месяцам</button><br />  <br />
 
-    
-	<table class="table stat">
-		<tr class="table__header">
-            <th>Месяц</th>
-			<th>Расходы, грн</th>
-			<th>Доходы, грн</th>
-			<th class="profit">Прибыль, грн</th>
-		</tr>
-		<tr ng-repeat="x in res222" class="tableBody">
-            <td>{{ x.month }} - {{ x.year }}</td>
-			<td>{{ x.minus }}</td>
-			<td>{{ x.plus }}</td>
-			<td class="profit">{{ x.profit }}</td>
-		</tr>
-    </table>
+    <div class='stat'>
+        <table class="table">
+            <tr class="table__header">
+                <th>Месяц</th>
+                <th>Расходы, грн</th>
+                <th>Доходы, грн</th>
+                <th class="profit">Прибыль, грн</th>
+            </tr>
+            <tr ng-repeat="x in res222" class="tableBody">
+                <td>{{ x.month }} - {{ x.year }}</td>
+                <td>{{ x.minus }}</td>
+                <td>{{ x.plus }}</td>
+                <td class="profit">{{ x.profit }}</td>
+            </tr>
+        </table>
+    </div><br />  <br />
+
+    <div class='stat'>
+        <h1>Оборот текущего месяца</h1>
+        <h2>{{ resCurMonth[0].month }} {{ resCurMonth[0].year }}</h2>
+        <table class="table">
+            <tr class="table__header">
+                <th>Доход</th>
+                <th>Расходы, грн</th>
+                <th>Баланс, грн</th>
+            </tr>
+            <tr ng-repeat="x in resCurMonth" class="tableBody">
+                <td>{{ x.plus }}</td>
+                <td>{{ x.minus }}</td>
+                <td>{{ x.profit }}</td>
+            </tr>
+        </table><br />  <br />
+        <h1>Общий баланс: {{ totalProfit }} грн.</h1>
+    </div>
+
+
+
     
 </div><!-- ng-controller="ctrl_1" -->
 
@@ -145,9 +167,11 @@ function autosize(){
 
 /* отображение статистики */
 var statBtn = document.querySelector('.stat__btn');
-var stat = document.querySelector('.stat');
+var stat = document.querySelectorAll('.stat');
 statBtn.onclick = function(){
-    stat.style.display = (stat.style.display == 'none') ? 'block' : 'none'
+    for(var i = 0; i < stat.length; i++){
+         stat[i].style.display = (stat[i].style.display == 'none') ? 'block' : 'none';
+    }
 }
 
 
