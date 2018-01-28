@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+/* FORMA ******************** */
+.forma {
+    display: none;
+    position: absolute;
+    top: calc(50% - 100px);
+    left: calc(50% - 125px);  
+    border: 5px solid black;
+    background: orange;
+}
+textarea {  
+    /* box-sizing: padding-box; */
+    overflow:hidden;
+    /* demo only: */
+    padding:10px;
+    width:250px;
+    font-size:14px;
+    margin:50px auto;
+    display:block;
+    border-radius:10px;
+    border:6px solid #556677;
+}
+.closes {
+    font-size: 50px;
+    cursor: pointer;
+    background-color: white;
+}
+/* ***************************** */
+
+
+
+body {
+    width: 100%;
+}
+.table {
+    position: relative;
+    top: 20px;
+    background: rgba(27, 143, 194, 0.7);
+    font-size: 15px;
+}
+
+/* .table__head */
+.table__head {
+    width: 100%;
+}
+.table__head th:nth-child(1) {
+    width: 50%;
+}
+.table__head th:nth-child(2),
+.table__head th:nth-child(3) {
+    width: 15%;
+}
+.table__head th:nth-child(4),
+.table__head th:nth-child(5) {
+    width: 15%;
+}
+.table__input_date {
+    width: calc(25% - 16px);
+    font-family: "Montserrat", sans-serif;  
+    color: #999999; 
+    border: none;
+}
+.table__input_date:first-child {
+    width: calc(50% - 4px);
+}
+.table__input_money {
+    width: calc(100% - 16px);
+    font-family: "Montserrat", sans-serif;
+}
+input[type="text"] {
+    color: #999999;
+    height: 25px;
+    border: none;    
+    margin-top: 9px;
+}
+input[type="text"]::-moz-placeholder { color: #999999; }
+input[type="text"]::-webkit-input-placeholder { color: #999999; }
+input[type="text"]:-ms-input-placeholder { color: #999999; }
+input[type="text"]::-ms-input-placeholder { color: #999999; }
+input[type="text"]::placeholder { color: #999999; }
+select {
+    height: 33px; 
+    margin-top: 9px; 
+}
+.table__button {
+    width: 100%;
+    height: 33px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    cursor: pointer;
+    outline: 0;
+    background: #FF9319;
+    border: none;
+    border-radius: 5px;
+    margin-top: 9px;
+}
+button:hover {
+    background: rgb(27, 143, 194);
+}
+/* __________ .table__head */
+
+.table__body {
+    background: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    color: rgba(27, 143, 194, 0.7);
+    font-weight: bold;
+}
+tr.table__body:nth-child(odd) {
+    background-color: rgb(247, 247, 247); 
+}
+.table__body_red {
+    color: rgb(255, 57, 57);
+}
+.table__body_green {
+    color: #15D161;
+}
+.table__body_garbage {
+    width: 24px;
+    height: 24px;
+    background-image: url("../img/del.png"); 
+    cursor: pointer;
+}
+.table__body_garbage:hover {
+    background: url("../img/del_hover.png") no-repeat; 
+}
+.table__body_garbage:hover::after,
+.table__body_note:hover::after {
+    content: attr(title); 
+    position: absolute; 
+    font-size: 15px; 
+    margin: -5px 0 0 -78px;
+    color: #FF9319;
+    border: 1px solid #FF9319;
+    border-radius: 3px;
+    padding: 5px;
+    background: #ffffff;
+    z-index: 10;
+}
+.table__body_note:hover::after {
+    margin: -5px 0 0 -125px;
+}
+.table__body_note {
+    width: 24px;
+    height: 24px;
+    background-image: url("../img/note.png"); 
+    cursor: pointer;
+    z-index: 1;
+}
+.table__body_note:hover {
+    background: url("../img/note_hover.png") no-repeat; 
+}
+.table__body_check {
+    position: relative;
+    top: 8px;
+    left: -6px;
+    color: #FF9319;
+    font-size: 25px;
+}
+@media screen and (min-width: 1201px) { 
+    .table {
+        max-width: 70%;
+        left: 15%;
+    }
+}
+@media screen and (min-width: 1001px) and (max-width: 1200px) { 
+    .table {
+        max-width: 80%;
+        left: 10%;
+    }
+}
+@media screen and (min-width: 851px) and (max-width: 1000px) {
+    .table {
+        max-width: 90%;
+        left: 5%;
+    }
+}
+@media screen and (min-width: 501px) and (max-width: 850px) {
+    .table {
+        max-width: 100%;
+        left: 0;
+    }
+}
+@media screen and (min-width: 0px) and (max-width: 500px) {
+    .table {
+        font-size: 12px;
+    }
+    .table__button,
+    .table__input_money {
+        font-size: 12px;
+    }
+    .table__input_date {
+        font-size: 10px;
+    }
+    input[type="text"] {
+        font-size: 10px;
+    }
+    .table__button {
+        font-size: 10px;
+    }
+    .table__head th {
+        padding: 2px;
+    }
+    input.table__input_date,
+    input.table__input_money {
+        padding-left: 2px;
+    }
+    select.table__input_date {
+        margin-left: 2px;
+    }
+    .table__input_date {
+        width: calc(25% - 14px);
+    }
+    .table__input_date:first-child {
+        width: calc(50% - 0px);
+    }
+    .table__input_money {
+        width: calc(100% - 8px);
+        font-family: "Montserrat", sans-serif;
+    }
+    .table__body_garbage {
+        transform: scale(.7);
+    }
+    .table__body_note {
+        transform: scale(.7);
+    }
+}
+
+span {
+    position: absolute;
+    z-index: 100;
+}
+
+
+
+
+
+
+
+
+
+.pagination {
+    width: 330px;
+    position: relative;
+    top: 20px;
+    left: 10%;
+    font-size: 14px;
+    cursor: pointer;    
+}
+.stat {
+    display: none;
+}
+.profit {
+    background: greenyellow;
+}
+

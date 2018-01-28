@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MoneyApp</title>
+    
+    <!-- <link data-require="bootstrap-css@2.3.2" data-semver="2.3.2" rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" /> -->
+    <link rel="stylesheet" href="libs/bootstrap-css/bootstrap.min.css" />
+
+
+
+    
+
+
+    <link rel="stylesheet" href="css/main.css" /> 
+</head>
+<style>
+
+</style>
+<body>
+
+<div ng-controller="ctrl_1">
+<!-- 111    
+    <button ng-click="clearStorage()">УДАЛИТЬ ВСЕ</button>
+    <br />
+    <br />
+    
+    Валюта ввода:
+    <select id="type" name="type" 
+        ng-model="currentCurrency.currency"
+        ng-options="x.name for x in currencyArr track by x.id">
+    </select>
+    
+    <br />
+    <br />
+-->
+
+
+
+
+
+    <table class="table">
+        <tr class="table__head">
+            <th>
+                <select class="table__input_date"
+                    ng-model="selected"
+                    ng-options="x.month for x in months">
+                </select>
+                <input class="table__input_date" type="text" 
+                    ng-model="number" />
+                <input class="table__input_date" type="text"
+                    ng-model="year" />
+            </th>
+            <th>
+                <input class="table__input_money" type="text" placeholder="Расход" 
+                    ng-model="moneyCosts" />
+            </th>
+            <th>
+                <input class="table__input_money" type="text" placeholder="Доход" 
+                    ng-model="moneyIncome" />
+            </th>
+            <th colspan="2">
+                <button class="table__button"
+                    ng-click="addDataToTable()">Сохранить
+                </button>
+            </th>
+        </tr>
+        <tr class="table__body"
+            ng-repeat="x in filteredPages track by $index">
+            <td ng-dblclick="editFieldsDate($index)" 
+                ng-bind-template="{{x.selectedMonth}}, {{x.number}} - {{x.year}}" 
+                data-month="{{ x.selectedMonth }}">
+            </td>
+            <td class="table__body_red">{{x.moneyCosts | currency: "" : 0}}</td>
+            <td class="table__body_green">{{x.moneyIncome | currency: "" : 0}}</td>
+            <td>
+                <div class="table__body_garbage" title="Удалить"
+                    ng-click="deleteDataFromTable($index)">
+                </div>
+            </td>
+            <td>
+                <div class="table__body_note" title="Комментарии"
+                    ng-click="addDescription($index)">
+                    <div class="table__body_check"
+                        ng-bind-html="x.label">
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+    
+  
+     
+    <div class="pagination pagination-sm" 
+        data-pagination="" 
+        data-num-pages="numPages()" 
+        data-current-page="currentPage" 
+        data-max-size="maxSize"  
+        data-boundary-links="true"
+        total-items="totalItems"  
+        previous-text="&#9668;" 
+        next-text="&#9658;" 
+        first-text="&#108;&#9668;" 
+        last-text="&#9658;&#108;">
+    </div>
+
+
+
+  
+    <div class="forma">
+        <form>{{star}}
+            <textarea class="textarea" placeholder='Писать сюда'></textarea>
+            <button class="forma__ok" ng-click="saveDescription()">Save</button>
+        </form>
+        <button class="closes" ng-click="closeDescription()">X</button>
+    </div>
+<!-- 333
+    <button class="stat__btn" ng-click="funcForGraph()">Отобразить статистику по месяцам</button><br />  <br />
+
+    <div class='stat'>
+        <table class="table">
+            <tr class="table__header">
+                <th>Месяц</th>
+                <th>Расходы, грн</th>
+                <th>Доходы, грн</th>
+                <th class="profit">Прибыль, грн</th>
+            </tr>
+            <tr ng-repeat="x in res222" class="tableBody">
+                <td>{{ x.month }} - {{ x.year }}</td>
+                <td>{{ x.minus }}</td>
+                <td>{{ x.plus }}</td>
+                <td class="profit">{{ x.profit }}</td>
+            </tr>
+        </table>
+    </div><br />  <br />
+
+    <div class='stat'>
+        <h1>Оборот текущего месяца</h1>
+        <h2>{{ resCurMonth[0].month }} {{ resCurMonth[0].year }}</h2>
+        <table class="table">
+            <tr class="table__header">
+                <th>Доход</th>
+                <th>Расходы, грн</th>
+                <th>Баланс, грн</th>
+            </tr>
+            <tr ng-repeat="x in resCurMonth" class="tableBody">
+                <td>{{ x.plus }}</td>
+                <td>{{ x.minus }}</td>
+                <td>{{ x.profit }}</td>
+            </tr>
+        </table><br />  <br />
+        <h1>Общий баланс: {{ totalProfit }} грн.</h1>
+    </div>
+-->
+
+
+    
+</div><!-- ng-controller="ctrl_1" -->
+
+
+
+
+
+<!--
+<script>
+
+var textarea = document.querySelector('textarea');
+
+textarea.addEventListener('keydown', autosize);
+             
+function autosize(){
+  var el = this;
+  setTimeout(function(){
+    el.style.cssText = 'height:auto; padding:0';
+    el.style.cssText = 'height:' + el.scrollHeight + 'px';
+  },0);
+}
+
+
+/* отображение статистики */
+var statBtn = document.querySelector('.stat__btn');
+var stat = document.querySelectorAll('.stat');
+statBtn.onclick = function(){
+    for(var i = 0; i < stat.length; i++){
+         stat[i].style.display = (stat[i].style.display == 'none') ? 'block' : 'none';
+    }
+}
+</script>
+-->
+
+
+<script src="libs/angular/angular.min.js"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.7/angular-sanitize.min.js"></script> -->
+<script src="libs/angular-sanitize/angular-sanitize.min.js"></script>
+
+<!-- <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.min.js"></script>  -->
+<script src="libs/ui-bootstrap-tpls/ui-bootstrap-tpls.min.js"></script> 
+
+
+<script src="mainApp.js"></script>
+<script src="ctrl_1.js"></script>
+</body>
+</html>
+<!-- &#8372; uah -->
